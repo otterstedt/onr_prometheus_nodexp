@@ -16,6 +16,11 @@
     dest: "{{ onr_prometheus_nodexp_install_folder }}"
     remote_src: yes
 
+- name: Make sure node_exporter is executable
+  file:
+    path: "{{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}/node_exporter"
+    mode: '0740'
+
 
 
     

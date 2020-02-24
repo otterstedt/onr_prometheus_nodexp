@@ -2,10 +2,10 @@
 Description=Node Exporter Service
 
 [Service]
-ExecStart={{ onr_prometheus_nodexp_install_folder }}/onr_prometheus_nodexp_binary_name
+ExecStart={{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}/node_exporter
 User={{ onr_prometheus_nodexp_user }}
 Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
-WorkingDirectory={{ onr_prometheus_nodexp_install_folder }}
+WorkingDirectory={{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}
 TimeoutSec=60
 
 [Install]
