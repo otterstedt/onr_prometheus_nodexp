@@ -1,11 +1,10 @@
 ---
 # tasks file for onr-prometheus-nodexp
-- name: Ensure installation directory exists - 
+- name: Ensure installation directory exists
   file:
     path: "{{ item }}"
     state: directory
   with_items: 
-    - "{{ onr_prometheus_nodexp_systemd_folder }}"
     - "{{ onr_prometheus_nodexp_install_folder }}"
 
 - name: Download node exporter release binary
@@ -23,6 +22,14 @@
   file:
     path: "{{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}/node_exporter"
     mode: '0740'
+
+- name: Ensure systemd directory exists
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items: 
+    - "{{ onr_prometheus_nodexp_systemd_folder }}"
+  when: onr_prometheus_nodexp_systemd_enable
 
 - name: Upload System D Service File
   template:
