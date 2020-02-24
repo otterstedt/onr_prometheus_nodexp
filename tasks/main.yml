@@ -35,6 +35,7 @@
   template:
     src: nodexp.service
     dest: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
+  when: onr_prometheus_nodexp_systemd_enable
 
 - name: Enable node exporter service
   systemd:
