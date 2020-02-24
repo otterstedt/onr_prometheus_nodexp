@@ -8,11 +8,11 @@
 - name: Download node exporter release binary
   get_url:
     url: "{{ onr_prometheus_nodexp_binary_url }}"
-    dest: "{{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}".tgz
+    dest: "{{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}.tgz"
 
 - name: Extract node exporter archive to installation folder
   unarchive:
-    src: "{{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}".tgz
+    src: "{{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}.tgz"
     dest: "{{ onr_prometheus_nodexp_install_folder }}"
     remote_src: yes
 
