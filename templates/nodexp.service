@@ -7,6 +7,8 @@ User={{ onr_prometheus_nodexp_user }}
 Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
 WorkingDirectory={{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}
 TimeoutSec=60
+Restart=always
+RestartSec=15
 
 [Install]
 Alias=nodexp.service
