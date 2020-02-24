@@ -9,3 +9,5 @@ onr_prometheus_nodexp_binary_name: node_exporter-0.17.0
 onr_prometheus_nodexp_install_folder: /home/{{ onr_prometheus_nodexp_user }}/opt/node_exporter
 
 onr_prometheus_nodexp_systemd_enable: "{{ system_capability_systemd | default(True) }}"
+
+onr_prometheus_nodexp_systemd_folder: /home/{{ ansible_user }}/systemd

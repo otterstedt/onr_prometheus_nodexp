@@ -2,8 +2,11 @@
 # tasks file for onr-prometheus-nodexp
 - name: Ensure installation directory exists - 
   file:
-    path: "{{ onr_prometheus_nodexp_install_folder }}"
+    path: "{{ item }}"
     state: directory
+  with_items: 
+    - "{{ onr_prometheus_nodexp_systemd_folder }}"
+    - "{{ onr_prometheus_nodexp_install_folder }}"
 
 - name: Download node exporter release binary
   get_url:
@@ -21,6 +24,14 @@
     path: "{{ onr_prometheus_nodexp_install_folder }}/{{ onr_prometheus_nodexp_binary_name }}/node_exporter"
     mode: '0740'
 
+- name: Upload System D Service File
+  template:
+    src: nodexp.service
+    dest: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
 
-
+- name: Enable and start node exporter service
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
     
