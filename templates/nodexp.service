@@ -1,0 +1,13 @@
+[Unit]
+Description=Node Exporter Service
+
+[Service]
+ExecStart={{ onr_prometheus_nodexp_install_folder }}/onr_prometheus_nodexp_binary_name
+User={{ onr_prometheus_nodexp_user }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory={{ onr_prometheus_nodexp_install_folder }}
+TimeoutSec=60
+
+[Install]
+Alias=nodexp.service
+WantedBy=multi-user.target

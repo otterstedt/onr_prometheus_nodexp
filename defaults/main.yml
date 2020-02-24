@@ -1,0 +1,11 @@
+---
+# defaults file for onr-prometheus-nodexp
+onr_prometheus_nodexp_user: "{{ ansible_user }}"
+onr_prometheus_nodexp_group: "{{ ansible_user }}"
+
+onr_prometheus_nodexp_binary_url: https://github.com/prometheus/node_exporter/releases/download/v0.17.0/node_exporter-0.17.0.linux-amd64.tar.gz
+onr_prometheus_nodexp_binary_name: node_exporter-0.17.0
+
+onr_prometheus_nodexp_install_folder: /home/{{ onr_prometheus_nodexp_user }}/opt/node_exporter
+
+onr_prometheus_nodexp_systemd_enable: "{{ system_capability_systemd | default(True) }}"
