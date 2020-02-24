@@ -34,4 +34,5 @@
     state: restarted
     daemon_reload: yes
     name: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
+  when: onr_prometheus_nodexp_systemd_enable
     
