@@ -34,6 +34,7 @@
     enabled: yes
     name: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
   when: onr_prometheus_nodexp_systemd_enable
+  become: yes
 
 - name: Enable and start node exporter service
   systemd:
@@ -42,4 +43,5 @@
     enabled: yes
     name: nodexp
   when: onr_prometheus_nodexp_systemd_enable
+  become: yes
     
