@@ -29,10 +29,17 @@
     src: nodexp.service
     dest: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
 
+- name: Enable node exporter service
+  systemd:
+    enabled: yes
+    name: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
+  when: onr_prometheus_nodexp_systemd_enable
+
 - name: Enable and start node exporter service
   systemd:
     state: restarted
     daemon_reload: yes
-    name: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
+    enabled: yes
+    name: nodexp
   when: onr_prometheus_nodexp_systemd_enable
     
