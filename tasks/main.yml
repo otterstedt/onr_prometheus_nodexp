@@ -37,11 +37,11 @@
     dest: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
   when: onr_prometheus_nodexp_systemd_enable
 
+#systemd module can't handle custom unit file path
 - name: Enable node exporter service
-  systemd:
-    enabled: yes
-    name: "{{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service"
-  when: onr_prometheus_nodexp_systemd_enable
+  shell: systemctl enable {{ onr_prometheus_nodexp_systemd_folder }}/nodexp.service
+  args:
+    chdir: "{{ onr_prometheus_nodexp_systemd_folder }}"
   become: yes
 
 - name: Enable and start node exporter service
@@ -49,7 +49,7 @@
     state: restarted
     daemon_reload: yes
     enabled: yes
-    name: nodexp
+    name: nodexp.service
   when: onr_prometheus_nodexp_systemd_enable
   become: yes
     
